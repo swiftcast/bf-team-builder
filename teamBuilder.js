@@ -57,7 +57,12 @@ function isBanned(pokemonName) {
 function updateTeamList(pokemonName, pokemonPoints) {
     const teamList = document.getElementById("teamList");
     const listItem = document.createElement("li");
-    listItem.textContent = `${pokemonName} (${pokemonPoints} points) `;
+    listItem.classList.add("list-group-item"); // Bootstrap class to style list items
+
+    // Format Pokémon name to be capitalized
+    const formattedName = pokemonName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    listItem.textContent = `${formattedName} (${pokemonPoints} points) `;
     
     // Add a remove button
     const removeButton = document.createElement("button");
