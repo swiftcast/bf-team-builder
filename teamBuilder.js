@@ -7,6 +7,17 @@ const pointsMap = {
 };
 
 let totalPoints = 0;
+let team = new Set(); // To track added Pokémon and prevent duplicates
+
+// Populate the datalist with Pokémon names
+function populateDatalist() {
+    const dataList = document.getElementById("pokemonList");
+    Object.keys(pointsMap).forEach(pokemon => {
+        let option = document.createElement("option");
+        option.value = pokemon;
+        dataList.appendChild(option);
+    });
+}
 
 // Add event listener to allow adding Pokémon by pressing Enter
 document.getElementById("pokemonInput").addEventListener("keypress", function(event) {
@@ -21,6 +32,11 @@ function addPokemon() {
     const pokemonName = pokemonInput.value.trim().toLowerCase();
     const pokemonPoints = pointsMap[pokemonName] || 0;
 
+    if (team.has(pokemonName)) {
+        alert("Duplicate Pokémon not allowed.");
+        return;
+    }
+
     if (pokemonName && !isBanned(pokemonName) && (totalPoints + pokemonPoints) <= 8) {
         totalPoints += pokemonPoints;
         updateTeamList(pokemonName, pokemonPoints);
@@ -30,6 +46,7 @@ function addPokemon() {
     }
 
     pokemonInput.value = ''; // Clear the input field
+    team.add(pokemonName); 
 }
 
 function isBanned(pokemonName) {
@@ -59,3 +76,5 @@ function updateTotalPoints() {
     const totalPointsElement = document.getElementById("totalPoints");
     totalPointsElement.textContent = totalPoints;
 }
+
+populateDatalist(); 
