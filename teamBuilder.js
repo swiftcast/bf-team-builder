@@ -30,23 +30,20 @@ document.getElementById("pokemonInput").addEventListener("keypress", function(ev
 function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
     const pokemonName = pokemonInput.value.trim().toLowerCase();
-    const pokemonPoints = pointsMap[pokemonName] || 0;
 
     if (team.has(pokemonName)) {
-        alert("Duplicate Pokémon not allowed.");
+        // Avoid adding duplicate Pokémon
         return;
     }
 
-    if (pokemonName && !isBanned(pokemonName) && (totalPoints + pokemonPoints) <= 8) {
-        totalPoints += pokemonPoints;
-        updateTeamList(pokemonName, pokemonPoints);
-        updateTotalPoints();
-    } else {
-        alert("Invalid Pokémon or points limit exceeded.");
-    }
+    const pokemonPoints = pointsMap[pokemonName] || 0;
 
+    totalPoints += pokemonPoints;
+    updateTeamList(pokemonName, pokemonPoints);
+    updateTotalPoints();
+
+    team.add(pokemonName); // Add to the set to track the added Pokémon
     pokemonInput.value = ''; // Clear the input field
-    team.add(pokemonName); 
 }
 
 function isBanned(pokemonName) {
@@ -80,6 +77,15 @@ function updateTeamList(pokemonName, pokemonPoints) {
 function updateTotalPoints() {
     const totalPointsElement = document.getElementById("totalPoints");
     totalPointsElement.textContent = totalPoints;
+
+    // Check if points limit is exceeded
+    if (totalPoints > 8) {
+        totalPointsElement.classList.add("text-danger");
+        totalPointsElement.textContent += " (limit exceeded)";
+    } else {
+        totalPointsElement.classList.remove("text-danger");
+    }
 }
+
 
 populateDatalist(); 
