@@ -1,16 +1,24 @@
 const pointsMap = {
-    "Mega Scizor": 6, "Mega Salamence": 6,
-    "Dialga": 4, "Groudon": 4, "Meloetta": 4, "Mewtwo": 4, "Solgaleo": 4, "Mega Steelix": 4, "Xerneas": 4, "Zacian": 4,
-    "Mega Aggron": 3, "Mega Blastoise": 3, "Giratina (Altered)": 3, "Giratina (Origin)": 3,
-    "Mega Charizard X": 2, "Dragonite": 2, "Landorus (Therian)": 2, "Lugia": 2, "Melmetal": 2, "Palkia": 2, "Reshiram": 2, "Mega Slowbro": 2, "Yveltal": 2, "Zarude": 2, "Zekrom": 2,
-    "Mega Abomasnow": 1, "Mega Blaziken": 1, "Florges": 1, "Genesect": 1, "Heatran": 1, "Kyurem": 1, "Mew": 1, "Rayquaza": 1
+    "mega scizor": 6, "mega salamence": 6,
+    "dialga": 4, "groudon": 4, "meloetta": 4, "mewtwo": 4, "solgaleo": 4, "mega steelix": 4, "xerneas": 4, "zacian": 4,
+    "mega aggron": 3, "mega blastoise": 3, "giratina (altered)": 3, "giratina (origin)": 3,
+    "mega charizard x": 2, "dragonite": 2, "landorus (therian)": 2, "lugia": 2, "melmetal": 2, "palkia": 2, "reshiram": 2, "mega slowbro": 2, "yveltal": 2, "zarude": 2, "zekrom": 2,
+    "mega abomasnow": 1, "mega blaziken": 1, "florges": 1, "genesect": 1, "heatran": 1, "kyurem": 1, "mew": 1, "rayquaza": 1
 };
 
 let totalPoints = 0;
 
+// Add event listener to allow adding Pokémon by pressing Enter
+document.getElementById("pokemonInput").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        addPokemon();
+    }
+});
+
 function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
-    const pokemonName = pokemonInput.value.trim();
+    const pokemonName = pokemonInput.value.trim().toLowerCase();
     const pokemonPoints = pointsMap[pokemonName] || 0;
 
     if (pokemonName && !isBanned(pokemonName) && (totalPoints + pokemonPoints) <= 8) {
@@ -25,14 +33,25 @@ function addPokemon() {
 }
 
 function isBanned(pokemonName) {
-    const banned = ["Mega Charizard Y", "Mega Garchomp", "Mega Gardevoir", "Mega Gengar", "Mega Gyarados", "Primal Groudon", "Primal Kyogre", "Mega Latias", "Mega Latios", "Mega Rayquaza", "Mega Swampert", "Mega Tyranitar", "Zygarde (Complete)"];
+    const banned = ["mega charizard y", "mega garchomp", "mega gardevoir", "mega gengar", "mega gyarados", "primal groudon", "primal kyogre", "mega latias", "mega latios", "mega rayquaza", "mega swampert", "mega tyranitar", "zygarde (complete)"];
     return banned.includes(pokemonName);
 }
 
 function updateTeamList(pokemonName, pokemonPoints) {
     const teamList = document.getElementById("teamList");
     const listItem = document.createElement("li");
-    listItem.textContent = `${pokemonName} (${pokemonPoints} points)`;
+    listItem.textContent = `${pokemonName} (${pokemonPoints} points) `;
+    
+    // Add a remove button
+    const removeButton = document.createElement("button");
+    removeButton.textContent = "Remove";
+    removeButton.onclick = function() {
+        listItem.remove();
+        totalPoints -= pokemonPoints;
+        updateTotalPoints();
+    };
+    
+    listItem.appendChild(removeButton);
     teamList.appendChild(listItem);
 }
 
