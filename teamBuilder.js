@@ -63,17 +63,13 @@ function addPokemon() {
         pokemonPoints = currentLeague === 'great' ? 1 : 0;
     }
 
-    if (totalPoints + pokemonPoints <= pointsLimit[currentLeague]) {
-        totalPoints += pokemonPoints;
-        updateTeamList(pokemonName, pokemonPoints);
-        updateTotalPoints();
+    // Add Pokémon points to total regardless of limit
+    totalPoints += pokemonPoints;
+    updateTeamList(pokemonName, pokemonPoints);
+    updateTotalPoints();
 
-        team.add(pokemonName); // Add to the set to track the added Pokémon
-        pokemonInput.value = ''; // Clear the input field
-    } else {
-        // Handle points limit exceeded without adding Pokémon
-        console.log("Points limit exceeded, can't add more Pokémon");
-    }
+    team.add(pokemonName); // Add to the set to track the added Pokémon
+    pokemonInput.value = ''; // Clear the input field
 }
 
 function isBanned(pokemonName) {
