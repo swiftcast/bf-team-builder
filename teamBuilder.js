@@ -15,7 +15,7 @@ const leagueData = {
     }
 };
 
-let currentLeague = 'master'; // Default league
+let currentLeague = 'great'; // Default league
 let totalPoints = 0;
 let team = new Set();
 let pointsLimit = { "master": 8, "great": 17 };
@@ -116,5 +116,5 @@ function updateTotalPoints() {
     }
 }
 
-
-populateDatalist(); 
+switchLeague('great');
+populateDatalist();
