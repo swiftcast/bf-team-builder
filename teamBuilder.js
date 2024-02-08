@@ -18,6 +18,7 @@ const leagueData = {
 let currentLeague = 'master'; // Default league
 let totalPoints = 0;
 let team = new Set();
+let pointsLimit = { "master": 8, "great": 17 };
 
 function populateDatalist(league) {
     const dataList = document.getElementById("pokemonList");
@@ -43,28 +44,35 @@ function switchLeague(league) {
   document.getElementById("teamList").innerHTML = ''; // Clear the team list UI
   updateTotalPoints(); // Reset points display
   populateDatalist(league); // Populate the datalist with the new league's Pokémon
+  document.getElementById("totalPoints").innerText = `Total Points: 0/${pointsLimit[league]}`;
 }
 
 function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
     const pokemonName = pokemonInput.value.trim().toLowerCase();
 
-    if (isBanned(pokemonName)) {
-        return; // Avoid adding banned Pokémon
+    if (team.has(pokemonName) || isBanned(pokemonName, currentLeague)) {
+        return; // Avoid adding banned or duplicate Pokémon
     }
 
-    const pokemonPoints = leagueData[currentLeague][pokemonName] || 0;
-
-    if (totalPoints + pokemonPoints <= 8) {
-      totalPoints += pokemonPoints;
-      updateTeamList(pokemonName, pokemonPoints);
-      updateTotalPoints();
-  
-      team.add(pokemonName); // Add to the set to track the added Pokémon
-      pokemonInput.value = ''; // Clear the input field
+    // Determine points for untiered Pokémon based on the league
+    let pokemonPoints;
+    if (pokemonName in leagueData[currentLeague]) {
+        pokemonPoints = leagueData[currentLeague][pokemonName];
     } else {
-      // Handle points limit exceeded without adding Pokémon
-      console.log("Points limit exceeded, can't add more Pokémon");
+        pokemonPoints = currentLeague === 'great' ? 1 : 0;
+    }
+
+    if (totalPoints + pokemonPoints <= pointsLimit[currentLeague]) {
+        totalPoints += pokemonPoints;
+        updateTeamList(pokemonName, pokemonPoints);
+        updateTotalPoints();
+
+        team.add(pokemonName); // Add to the set to track the added Pokémon
+        pokemonInput.value = ''; // Clear the input field
+    } else {
+        // Handle points limit exceeded without adding Pokémon
+        console.log("Points limit exceeded, can't add more Pokémon");
     }
 }
 
