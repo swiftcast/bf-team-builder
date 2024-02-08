@@ -45,6 +45,14 @@ function switchLeague(league) {
   updateTotalPoints(); // Reset points display
   populateDatalist(league); // Populate the datalist with the new league's Pokémon
   document.getElementById("totalPoints").innerText = `Total Points: 0/${pointsLimit[league]}`;
+
+  // Update the league title
+  const leagueTitleElement = document.getElementById("leagueTitle");
+  if(league === 'great') {
+    leagueTitleElement.textContent = "Pokémon Great League Team Builder";
+  } else if(league === 'master') {
+    leagueTitleElement.textContent = "Pokémon Master League Team Builder";
+  }
 }
 
 function addPokemon() {
