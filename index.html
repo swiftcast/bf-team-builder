@@ -4,41 +4,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Pokémon Team Builder</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- PicoCSS Link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.min.css"/>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="container py-4">
+<body>
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid justify-content-center">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#" onclick="switchLeague('great')">Great League</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" onclick="switchLeague('master')">Master League</a>
-                </li>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="switchLeague('great')">Great League</a></li>
+                <li><a href="#" onclick="switchLeague('master')">Master League</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
     
-    <h1 id="leagueTitle" class="text-center mb-4">Pokémon Master League Team Builder</h1>
+    <main class="container">
+        <h1 id="leagueTitle" class="text-center">Pokémon Master League Team Builder</h1>
 
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <div class="input-group mb-3">
-                <input type="text" id="pokemonInput" class="form-control" placeholder="Enter Pokémon name" list="pokemonList">
+        <section>
+            <div class="grid">
+                <input type="text" id="pokemonInput" placeholder="Enter Pokémon name" list="pokemonList" autofocus>
                 <datalist id="pokemonList"></datalist>
-                <button onclick="addPokemon()" class="btn btn-primary">Add Pokémon</button>
+                <button type="submit" onclick="addPokemon()">Add Pokémon</button>
             </div>
             
-            <h2 class="mb-3">Your Team</h2>
-            <ul id="teamList" class="list-group mb-3"></ul>
-            <p>Total Points: <span id="totalPoints" class="fw-bold">0</span></p>
-        </div>
-    </div>
+            <h2>Your Team</h2>
+            <ul id="teamList"></ul>
+            <p>Total Points: <span id="totalPoints">0</span></p>
+        </section>
+    </main>
 
     <script src="teamBuilder.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
