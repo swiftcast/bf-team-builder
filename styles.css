@@ -1,5 +1,6 @@
 .great-league {
     background-color: #AAD7D9;
+    
 }
 
 .master-league {
@@ -32,3 +33,14 @@ body {
     min-height: 100vh;
 }
 
+/* Styles for dark mode */
+@media (prefers-color-scheme: dark) {
+    .great-league {
+        background-color: #19376D;
+        
+    }
+    
+    .master-league {
+        background-color: #3C0753;
+    }
+  }
