@@ -28,6 +28,17 @@ function populateDatalist(league) {
         option.value = pokemon;
         dataList.appendChild(option);
     });
+
+    fetch('pokemon.json')
+        .then(response => response.json())
+        .then(data => {
+            data.pokemon.forEach(pokemon => {
+                let option = document.createElement("option");
+                option.value = pokemon.pokemonId;
+                dataList.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Error fetching Pokémon data:', error));
 }
 
 document.getElementById("pokemonInput").addEventListener("keypress", function(event) {
