@@ -1,0 +1,43 @@
+# Dependency directories
+/node_modules/
+/bower_components/
+
+# Build outputs
+/dist/
+/tmp/
+/out/
+/build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE and editor directories
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Log files
+*.log
+
+# Environment files
+.env
+
+# Optional: Ignore specific JSON files that contain sensitive data or should not be version controlled
+# sensitive-data.json
+# Note: Be careful with ignoring JSON files if they are needed for your website to function
+*.json
+
+# Generated files
+/css/main.css
+/js/bundle.js
+
+# Ignore specific file extensions that are not needed
+*.map
+*.sass-cache
+
+# Ignore all HTML files except the main entry point (if dynamically generated or sensitive)
+# *.html
+# !index.html
+
