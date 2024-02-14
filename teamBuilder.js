@@ -54,14 +54,7 @@ function switchLeague(league) {
     leagueTitleElement.textContent = "Pokémon Master League Team Builder";
   }
 
-  const bodyElement = document.body;
-    if (league === 'great') {
-        leagueTitleElement.textContent = "Pokémon Great League Team Builder";
-        bodyElement.className = "great-league";
-    } else if (league === 'master') {
-        leagueTitleElement.textContent = "Pokémon Master League Team Builder";
-        bodyElement.className = "master-league";
-    }
+  document.body.className = league + '-league'; // Adjusts the body class based on the selected league
 }
 
 function addPokemon() {
