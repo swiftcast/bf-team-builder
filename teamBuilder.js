@@ -22,23 +22,28 @@ let pointsLimit = { "master": 8, "great": 17 };
 
 function populateDatalist(league) {
     const dataList = document.getElementById("pokemonList");
-    dataList.innerHTML = ''; // Clear existing options
-    Object.keys(leagueData[league]).forEach(pokemon => {
-        let option = document.createElement("option");
-        option.value = pokemon;
-        dataList.appendChild(option);
-    });
+    dataList.innerHTML = ''; 
 
-    fetch('pokemon.json')
+    fetch('pokemon_names.json')
         .then(response => response.json())
         .then(data => {
-            data.pokemon.forEach(pokemon => {
+            data.forEach(pokemon => {
                 let option = document.createElement("option");
-                option.value = pokemon.pokemonId;
+                option.value = pokemon;
                 dataList.appendChild(option);
             });
         })
         .catch(error => console.error('Error fetching Pokémon data:', error));
+}
+
+function formatPokemonId(pokemonId) {
+    // Replace underscores with spaces and capitalize the first letter of each word
+    return pokemonId
+        .toLowerCase()
+        .replace(/_/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 }
 
 document.getElementById("pokemonInput").addEventListener("keypress", function(event) {
@@ -70,7 +75,7 @@ function switchLeague(league) {
 
 function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
-    const pokemonName = pokemonInput.value.trim().toLowerCase();
+    const pokemonName = pokemonInput.value.trim();
 
     if (team.has(pokemonName) || isBanned(pokemonName, currentLeague)) {
         return; // Avoid adding banned or duplicate Pokémon
@@ -78,8 +83,8 @@ function addPokemon() {
 
     // Determine points for untiered Pokémon based on the league
     let pokemonPoints;
-    if (pokemonName in leagueData[currentLeague]) {
-        pokemonPoints = leagueData[currentLeague][pokemonName];
+    if (pokemonName.toLowerCase() in leagueData[currentLeague]) {
+        pokemonPoints = leagueData[currentLeague][pokemonName.toLowerCase()];
     } else {
         pokemonPoints = currentLeague === 'great' ? 1 : 0;
     }
@@ -102,10 +107,7 @@ function updateTeamList(pokemonName, pokemonPoints) {
     const listItem = document.createElement("li");
     listItem.classList.add("list-group-item"); // Bootstrap class to style list items
 
-    // Format Pokémon name to be capitalized
-    const formattedName = pokemonName.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
-
-    listItem.textContent = `${formattedName} (${pokemonPoints} points) `;
+    listItem.textContent = `${pokemonName} (${pokemonPoints} points) `;
     
     // Add a remove button
     const removeButton = document.createElement("button");
