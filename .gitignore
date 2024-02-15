@@ -27,7 +27,6 @@ Thumbs.db
 # Optional: Ignore specific JSON files that contain sensitive data or should not be version controlled
 # sensitive-data.json
 # Note: Be careful with ignoring JSON files if they are needed for your website to function
-*.json
 
 # Generated files
 /css/main.css

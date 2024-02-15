@@ -105,7 +105,7 @@ function isBanned(pokemonName) {
 function updateTeamList(pokemonName, pokemonPoints) {
     const teamList = document.getElementById("teamList");
     const listItem = document.createElement("li");
-    listItem.classList.add("list-group-item"); // Bootstrap class to style list items
+    //listItem.classList.add("list-group-item"); // Bootstrap class to style list items
 
     listItem.textContent = `${pokemonName} (${pokemonPoints} points) `;
     
