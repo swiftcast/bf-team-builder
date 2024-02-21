@@ -1,11 +1,11 @@
 
 const leagueData = {
     "master": {
-        "mega scizor": 6, "mega salamence": 6,
-        "dialga": 4, "groudon": 4, "meloetta": 4, "mewtwo": 4, "solgaleo": 4, "mega steelix": 4, "xerneas": 4, "zacian": 4,
-        "mega aggron": 3, "mega blastoise": 3, "giratina (altered)": 3, "giratina (origin)": 3,
-        "mega charizard x": 2, "dragonite": 2, "landorus (therian)": 2, "lugia": 2, "melmetal": 2, "palkia": 2, "reshiram": 2, "mega slowbro": 2, "yveltal": 2, "zarude": 2, "zekrom": 2,
-        "mega abomasnow": 1, "mega blaziken": 1, "florges": 1, "genesect": 1, "heatran": 1, "kyurem": 1, "mew": 1, "rayquaza": 1
+        "scizor (mega)": 6, "salamence (mega)": 6,
+        "dialga": 4, "groudon": 4, "meloetta": 4, "mewtwo": 4, "solgaleo": 4, "steelix (mega)": 4, "xerneas": 4, "zacian": 4,
+        "aggron (mega)": 3, "blastoise (mega)": 3, "giratina (altered)": 3, "giratina (origin)": 3,
+        "charizard (mega x)": 2, "dragonite": 2, "landorus (therian)": 2, "lugia": 2, "melmetal": 2, "palkia": 2, "reshiram": 2, "slowbro (mega)": 2, "yveltal": 2, "zarude": 2, "zekrom": 2,
+        "abomasnow (mega)": 1, "blaziken (mega)": 1, "florges": 1, "genesect": 1, "heatran": 1, "kyurem": 1, "mew": 1, "rayquaza": 1
     },
     "great": {
         "annihilape": 7, "azumarill": 7, "carbink": 7, "gligar": 7, "lanturn": 7, "lickitung": 7, "medicham": 7, "registeel": 7, "skarmory": 7,
@@ -99,7 +99,7 @@ function addPokemon() {
 }
 
 function isBanned(pokemonName) {
-    const banned = ["mega charizard y", "mega garchomp", "mega gardevoir", "mega gengar", "mega gyarados", "primal groudon", "primal kyogre", "mega latias", "mega latios", "mega rayquaza", "mega swampert", "mega tyranitar", "zygarde (complete)"];
+    const banned = ["charizard (mega y)", "garchomp (mega)", "gardevoir (mega)", "gengar (mega)", "gyarados (mega)", "primal groudon", "primal kyogre", "latias (mega)", "latios (mega)", "rayquaza (mega)", "swampert (mega)", "tyranitar (mega)", "zygarde (complete)"];
     return banned.includes(pokemonName);
 }
 function updateTeamList(pokemonName, pokemonPoints) {
