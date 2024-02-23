@@ -33,6 +33,13 @@ body {
     min-height: 100vh;
 }
 
+ul {
+    list-style-type: none; /* Optional: removes the default bullet */
+}
+body ul li {
+    list-style-image: url('ico-a_1_004.gif'); /* Path to your GIF */
+}
+
 /* Styles for dark mode */
 @media (prefers-color-scheme: dark) {
     .great-league {
