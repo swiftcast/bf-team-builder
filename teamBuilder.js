@@ -138,13 +138,15 @@ function updateTeamList(pokemonName, pokemonPoints) {
 
 function updateTotalPoints() {
     const totalPointsElement = document.getElementById("totalPoints");
-    totalPointsElement.textContent = `Total Points: ${totalPoints}/${pointsLimit[currentLeague]}`;
     if (totalPoints > pointsLimit[currentLeague]) {
-        totalPointsElement.classList.add("text-danger");
+        totalPointsElement.innerHTML = `Total Points: ${totalPoints}/${pointsLimit[currentLeague]} - Limit Exceeded!`;
+        totalPointsElement.classList.add("total-points-warning");
     } else {
-        totalPointsElement.classList.remove("text-danger");
+        totalPointsElement.innerHTML = `Total Points: ${totalPoints}/${pointsLimit[currentLeague]}`;
+        totalPointsElement.classList.remove("total-points-warning");
     }
 }
+
 
 function showToast(message) {
     const container = document.getElementById('toast-container');

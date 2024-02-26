@@ -64,6 +64,11 @@ body ul li {
     to {opacity: 0; visibility: hidden;}
 }
 
+.total-points-warning {
+    color: #960f0f; /* Or any warning color you prefer */
+}
+
+
 /* Styles for dark mode */
 @media (prefers-color-scheme: dark) {
     .great-league {
@@ -73,5 +78,9 @@ body ul li {
     
     .master-league {
         background-color: #3C0753;
+    }
+
+    .total-points-warning {
+        color: red; /* Or any warning color you prefer */
     }
   }
