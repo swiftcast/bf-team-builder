@@ -39,6 +39,30 @@ ul {
 body ul li {
     list-style-image: url('ico-a_1_004.gif'); /* Path to your GIF */
 }
+#toast-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    text-align: center;
+}
+
+
+.toast-message {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    animation: fadeOut 3s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0; visibility: hidden;}
+}
 
 /* Styles for dark mode */
 @media (prefers-color-scheme: dark) {

@@ -77,8 +77,10 @@ function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
     const pokemonName = pokemonInput.value.trim();
 
-    if (team.has(pokemonName) || isBanned(pokemonName, currentLeague)) {
-        return; // Avoid adding banned or duplicate Pokémon
+    if (/*team.has(pokemonName) || */isBanned(pokemonName, currentLeague)) {
+        showToast(`${pokemonName} is banned.`);
+        pokemonInput.value = ''; // Clear the input field
+        return;
     }
 
     // Determine points for untiered Pokémon based on the league
@@ -100,7 +102,7 @@ function addPokemon() {
 
 function isBanned(pokemonName) {
     const banned = ["charizard (mega y)", "garchomp (mega)", "gardevoir (mega)", "gengar (mega)", "gyarados (mega)", "primal groudon", "primal kyogre", "latias (mega)", "latios (mega)", "rayquaza (mega)", "swampert (mega)", "tyranitar (mega)", "zygarde (complete)"];
-    return banned.includes(pokemonName);
+    return banned.includes(pokemonName.toLowerCase());
 }
 function updateTeamList(pokemonName, pokemonPoints) {
     const teamList = document.getElementById("teamList");
@@ -131,6 +133,21 @@ function updateTotalPoints() {
         totalPointsElement.classList.remove("text-danger");
     }
 }
+
+function showToast(message) {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.classList.add('toast-message');
+    toast.textContent = message;
+
+    container.appendChild(toast);
+
+    // Automatically remove the toast after animation
+    toast.addEventListener('animationend', () => {
+        toast.remove();
+    });
+}
+
 
 
 switchLeague(currentLeague);
