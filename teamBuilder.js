@@ -162,8 +162,4 @@ function showToast(message) {
     });
 }
 
-
-
 switchLeague(currentLeague);
-populateDatalist(currentLeague);
-
