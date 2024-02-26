@@ -83,6 +83,18 @@ function addPokemon() {
         return;
     }
 
+    else if (team.has(pokemonName)) {
+        showToast(`${pokemonName} is already in.`);
+        pokemonInput.value = ''; // Clear the input field
+        return;
+    }
+
+    if (pokemonName == "") {
+        showToast(`No Pokemon entered.`);
+        pokemonInput.value = ''; // Clear the input field
+        return;
+    }
+
     // Determine points for untiered Pokémon based on the league
     let pokemonPoints;
     if (pokemonName.toLowerCase() in leagueData[currentLeague]) {
