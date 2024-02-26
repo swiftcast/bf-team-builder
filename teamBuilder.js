@@ -112,9 +112,9 @@ function addPokemon() {
     pokemonInput.value = ''; // Clear the input field
 }
 
-function isBanned(pokemonName) {
+function isBanned(pokemonName, currentLeague) {
     const banned = ["charizard (mega y)", "garchomp (mega)", "gardevoir (mega)", "gengar (mega)", "gyarados (mega)", "primal groudon", "primal kyogre", "latias (mega)", "latios (mega)", "rayquaza (mega)", "swampert (mega)", "tyranitar (mega)", "zygarde (complete)"];
-    return banned.includes(pokemonName.toLowerCase());
+    return currentLeague == "master" && banned.includes(pokemonName.toLowerCase());
 }
 function updateTeamList(pokemonName, pokemonPoints) {
     const teamList = document.getElementById("teamList");
