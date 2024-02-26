@@ -89,7 +89,7 @@ function addPokemon() {
         return;
     }
 
-    if (pokemonName == "") {
+    else if (pokemonName == "") {
         showToast(`No Pokemon entered.`);
         pokemonInput.value = ''; // Clear the input field
         return;
