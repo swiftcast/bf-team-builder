@@ -76,7 +76,8 @@ function switchLeague(league) {
 function addPokemon() {
     const pokemonInput = document.getElementById("pokemonInput");
     const pokemonName = pokemonInput.value.trim();
-
+    const dataListOptions = Array.from(document.getElementById("pokemonList").options).map(option => option.value);
+    
     if (/*team.has(pokemonName) || */isBanned(pokemonName, currentLeague)) {
         showToast(`${pokemonName} is banned.`);
         pokemonInput.value = ''; // Clear the input field
@@ -91,6 +92,12 @@ function addPokemon() {
 
     else if (pokemonName == "") {
         showToast(`No Pokemon entered.`);
+        pokemonInput.value = ''; // Clear the input field
+        return;
+    }
+
+    else if (!dataListOptions.map(option => option.toLowerCase()).includes(pokemonName.toLowerCase())) {
+        showToast(`${pokemonName} is not a valid selection.`);
         pokemonInput.value = ''; // Clear the input field
         return;
     }
